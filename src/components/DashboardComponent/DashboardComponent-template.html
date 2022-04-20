@@ -1,0 +1,67 @@
+<div class="container mt-5 ">
+    <div class="row gap-5 justify-content-center pb-3" >
+      <div class=" col-md-3 border rounded-3">
+       <div class="text-center mt-1 fs-1">
+         <h4 class="fs-6 mt-2">MENU</h4>
+       </div>
+       <div class="mt-2 bg-black separador"></div>
+       <div>
+         <ul class="lista">
+           <li> <router-link to="/admin/dashboard" class="nav-link text-black">
+            <i class="bi bi-speedometer2 text-black "></i> 
+             Dashboard</router-link></li>
+
+             <li><router-link to="/admin/tables" class="nav-link text-black">
+              <i class="bi bi-table"></i>
+              Tablas</router-link></li>
+               <li> <a href="#" class="nav-link text-black">
+                <i class="bi bi-person-circle"></i>
+            Usuarios
+            </a></li>
+         </ul>
+       </div>
+      </div>
+      <div class=" col-md-8 bg-light border rounded-3 py-3">
+          <div class="row  mx-1  justify-content-center ">
+            <div class="col-md-3 text-center " v-for="(item, index) in contadores">
+              <div class="bg-black p-md-4 p-sm-1 border rounded-3">
+                <h1 class="text-white">{{item}}</h1>
+              </div>
+              <div>
+                <p class="text-dark nombre_tablas">{{index}}</p>
+              </div>
+            
+            </div>
+            
+          </div>
+
+      </div>
+    </div>
+    <div class="row  justify-content-end my-5">
+      <h1 class="col-md-9 text-center">ULTIMOS USUARIOS REGISTRADOS</h1>
+    </div>
+    <div class="row justify-content-end mt-5 me-3 ">
+        <div class="col-md-9 bg-light border rounded-3">
+          <table class="table table-striped">
+            <thead>
+              <tr >
+                <th scope="col">id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contraseña</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in usuariosSort">
+                <td scope="row">{{item.id}}</td>
+                <td>{{item.us_name}}</td>
+                <td>{{item.us_lastname}}</td>
+                <td>{{item.us_email}}</td>
+                <td>....</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>

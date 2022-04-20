@@ -1,0 +1,16 @@
+i{
+ font-size:1.5rem;
+}
+li{
+    text-align:center;
+}
+#contenedor-logo{
+    width:100px;
+}
+
+@media screen and (max-width: 768px){
+    .justify-sm-content-center{
+        justify-content:center !important;
+    }
+
+}

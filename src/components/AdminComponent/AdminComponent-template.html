@@ -1,0 +1,35 @@
+<div class="container-fluid bg-dark text-white py-1">
+    <div class="row justify-content-center">
+            <div class="col-md-4 my-auto" id="contenedor-logo">
+                <h2>APPadmin</h2>
+            </div>
+
+            <ul class="nav col-md-8 justify-content-end  text-small justify-sm-content-center">
+            <li>
+                <a href="#" class="nav-link text-white">
+                    <i class="bi bi-house d-block"></i>
+                Home
+                </a>
+            </li>
+            <li >
+                <router-link to="/admin/dashboard" class="nav-link text-white">
+                    <i class="bi bi-speedometer2 text-white d-block"></i>
+                    Dashboard</router-link>
+            </li>
+            <li>
+                <router-link to="/admin/tables" class="nav-link text-white">
+                    <i class="bi bi-table d-block"></i>
+                    Tablas</router-link>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
+                    <i class="bi bi-person-circle d-block"></i>
+                Usuarios
+                </a>
+            </li>
+            </ul>
+    </div>
+  </div>
+  <div class="container">
+    <router-view></router-view>
+  </div>

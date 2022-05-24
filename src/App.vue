@@ -4,10 +4,18 @@
   </div>
 </template>
 <script>
+import { userTokenStore } from '@/store/tokenStore'
 export default {
   name: "App",
   components: {
   },
+  beforeCreate(){
+    const store = userTokenStore()
+    let token = localStorage.token;
+    if (token) {
+      store.setToken(token);
+    }
+  }
 };
 </script>
 <style lang="scss">

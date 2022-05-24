@@ -4,8 +4,8 @@
 .lista{
     list-style: none;
 }
-/* @media screen and (max-width: 1450px){
-    .nombre_tablas{
-        font-size:15px
+@media screen and (max-width: 515px){
+    .text-center{
+        font-size:0.7rem;
     }
-} */
+}

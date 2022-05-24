@@ -15,7 +15,7 @@
             <select
               class="form-select"
               name="acontecimientos"
-              v-model="acontecimiento"
+              v-model="id_acontecimiento"
               required
             >
               <option
@@ -32,7 +32,7 @@
             <select
               class="form-select"
               name="localizaciones"
-              v-model="localizacion"
+              v-model="location"
               required
             >
               <option
@@ -48,7 +48,7 @@
             <label>Descripción</label>
             <textarea
               class="form-control"
-              v-model="descripcion"
+              v-model="description"
               required
             ></textarea>
           </div>
@@ -57,7 +57,7 @@
             <input
               type="number"
               class="form-control"
-              v-model="precio"
+              v-model="price"
               required
             />
           </div>
@@ -67,7 +67,7 @@
               <input
                 class="form-check-input"
                 type="checkbox"
-                v-model="oferta"
+                v-model="estado"
                 required
               />
             </div>
@@ -90,12 +90,12 @@ export default {
   setup(props, { emit }) {
     const formData = reactive({
       name: "",
-      acontecimiento: "",
-      localizacion: "",
-      descripcion: "",
-      precio: 0,
-      oferta: false,
-      url:"",
+      id_acontecimiento: "",
+      location: "",
+      description: "",
+      price: 0,
+      estado: false,
+      img:"",
     });
     watch(formData, (newValue) => {
       emit("setViaje", newValue);
@@ -103,8 +103,11 @@ export default {
 
   
     function getUrl(e) {
-      console.log(e.target.value);
-        // formData.url=e.dataTransfer.files;
+      let fileReader = new FileReader();
+      fileReader.addEventListener('load', function(evt){
+             formData.img=evt.target.result
+      });
+      fileReader.readAsDataURL(e.target.files[0]);
     }
 
 

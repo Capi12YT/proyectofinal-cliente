@@ -1,0 +1,13 @@
+<div>
+    <transition name="modal-animation">
+        <div v-if="modalActive" class="modal">
+          <transition name="modal-animation-inner">
+            <div v-if="modalActive" class="modal-inner">
+              <!-- Modal Content -->
+              <slot></slot>
+              <button class="btn btn-danger" @click="close" type="button">Close</button>
+            </div>
+          </transition>
+        </div>
+      </transition>
+</div>

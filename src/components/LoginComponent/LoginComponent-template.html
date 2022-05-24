@@ -4,12 +4,12 @@
         <div class="col-xl-6 col-12">
             <div id="auth-left">
                 <div class="auth-logo">
-                    <img src="../../assets/images/logo/logo-removebg-preview.png" alt="Logo">
+                    <img src="@/assets/images/logo/logo-removebg-preview.png" alt="Logo">
                 </div>
                 <h1 class="text-black">Log in.</h1>
                 <h3 class="text-secondary mb-5">Log in with your data that you entered during registration.</h3>
     
-            
+
                     <div class="form-group position-relative has-icon-left mb-4">
                         <div class="form-control-icon d-flex ">
                             <div class="">
@@ -17,6 +17,7 @@
                             </div>
                             <div class="w-100">
                                 <input type="email" class="form-control form-control-xl" v-model="email" placeholder="Email">
+                              
                             </div>
                         </div>
                     </div>
@@ -27,27 +28,19 @@
                             </div>
                             <div class="w-100">
                                 <input type="password" class="form-control form-control-xl" v-model="password" placeholder="Contraseña">
+                               
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="form-check form-check-lg d-flex align-items-end">
-                        <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label text-gray-600" for="flexCheckDefault">
-                            Keep me logged in
-                        </label>
-                    </div> -->
                     <button class="btn btn-outline-dark shadow-lg mt-5 w-100" @click="login">Log in</button>
-              
+
+                    <div class="alert alert-danger mt-2" role="alert" v-if="confirmPassword==true">
+                        Contraseña Incorrecta
+                    </div>
                 <div class="text-center mt-5 fs-4">
                     <p class="text-gray-600">No estas registrado <router-link to="/register">Register</router-link>.</p>
                     <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p>
                 </div>
-            </div>
-            <div class="alert alert-success" role="alert" v-if="confirmPassword=='Contraseña Correcta'">
-                {{confirmPassword}}
-              </div>
-            <div class="alert alert-danger" role="alert" v-if="confirmPassword=='Contraseña InCorrecta'">
-                {{confirmPassword}}
             </div>
         </div>
         <div id="auth-right" class="col-xl-6 d-none d-xl-block">

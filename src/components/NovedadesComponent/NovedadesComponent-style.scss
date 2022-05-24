@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+h1,h2,h3{
+    font-family: 'Roboto', sans-serif;
+}
+.bg-gris{
+    background-color:#C4C4C4;
+}
+.gris{
+    color:#C4C4C4;
+}
+
+#novedades {
+    @media (max-width: 768px) {
+        .invisible{
+            visibility: visible !important;
+        }
+      }
+    @media (min-width: 768px) {
+        .slideExpandUp{
+            animation-name: slideExpandUp;
+            -webkit-animation-name: slideExpandUp;	
+        
+            animation-duration: 1.6s;	
+            -webkit-animation-duration: 1.6s;
+        
+            animation-timing-function: ease-out;	
+            -webkit-animation-timing-function: ease -out;
+        
+            visibility: visible !important;	
+        }
+        
+        @keyframes slideExpandUp {
+            0% {
+                transform: translateY(100%) scaleX(0.5);
+            }
+            30%{
+                transform: translateY(-8%) scaleX(0.5);
+            }	
+            40%{
+                transform: translateY(2%) scaleX(0.5);
+            }
+            50%{
+                transform: translateY(0%) scaleX(1.1);
+            }
+            60%{
+                transform: translateY(0%) scaleX(0.9);		
+            }
+            70% {
+                transform: translateY(0%) scaleX(1.05);
+            }			
+            80%{
+                transform: translateY(0%) scaleX(0.95);		
+            }
+            90% {
+                transform: translateY(0%) scaleX(1.02);
+            }	
+            100%{
+                transform: translateY(0%) scaleX(1);		
+            }
+        }
+        .tossing{
+            animation-name: tossing;
+            -webkit-animation-name: tossing;	
+        
+            animation-duration: 2.5s;	
+            -webkit-animation-duration: 2.5s;
+        
+            animation-iteration-count: infinite;
+            -webkit-animation-iteration-count: infinite;
+        }
+        
+        @keyframes tossing {
+            0% {
+                transform: rotate(-4deg);	
+            }
+            50% {
+                transform: rotate(4deg);
+            }
+            100% {
+                transform: rotate(-4deg);	
+            }						
+        }
+       
+        .floating{
+            animation-name: floating;
+            -webkit-animation-name: floating;
+        
+            animation-duration: 1.5s;	
+            -webkit-animation-duration: 1.5s;
+        
+            animation-iteration-count: infinite;
+            -webkit-animation-iteration-count: infinite;
+        }
+        
+        @keyframes floating {
+            0% {
+                transform: translateY(0%);	
+            }
+            50% {
+                transform: translateY(8%);	
+            }	
+            100% {
+                transform: translateY(0%);
+            }			
+        }
+       .floating:hover{
+        animation-name: none;
+        -webkit-animation-name: none;
+      }
+    }
+   
+}
+#eslogan{
+    @media (max-width: 768px) {
+        .slideLeft{
+            animation-name:none ;
+            -webkit-animation-name: none ;	
+        }
+        .slideRight{
+            animation-name:none ;
+            -webkit-animation-name: none ;	
+        }
+      }
+
+    @media (min-width: 768px) {
+        
+        .slideLeft{
+            animation-name: slideLeft;
+            -webkit-animation-name: slideLeft;	
+        
+            animation-duration: 1s;	
+            -webkit-animation-duration: 1s;
+        
+            animation-timing-function: ease-in-out;	
+            -webkit-animation-timing-function: ease-in-out;		
+        
+            visibility: visible !important;	
+        }
+        @keyframes slideLeft {
+            0% {
+                transform: translateX(150%);
+            }
+            50%{
+                transform: translateX(-8%);
+            }
+            65%{
+                transform: translateX(4%);
+            }
+            80%{
+                transform: translateX(-4%);
+            }
+            95%{
+                transform: translateX(2%);
+            }			
+            100% {
+                transform: translateX(0%);
+            }
+        }    
+        .slideRight{
+            animation-name: slideRight;
+            -webkit-animation-name: slideRight;	
+        
+            animation-duration: 1s;	
+            -webkit-animation-duration: 1s;
+        
+            animation-timing-function: ease-in-out;	
+            -webkit-animation-timing-function: ease-in-out;		
+        
+            visibility: visible !important;	
+        }
+        
+        @keyframes slideRight {
+            0% {
+                transform: translateX(-150%);
+            }
+            50%{
+                transform: translateX(8%);
+            }
+            65%{
+                transform: translateX(-4%);
+            }
+            80%{
+                transform: translateX(4%);
+            }
+            95%{
+                transform: translateX(-2%);
+            }			
+            100% {
+                transform: translateX(0%);
+            }	
+        }
+      }
+
+
+
+}

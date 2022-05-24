@@ -1,7 +1,7 @@
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs,ref } from "vue";
 import { registerService } from "@/services/registreServicio";
 export default {
-  name: "LoginComponent",
+  name: "RegisterComponent",
   props: [],
   components: {
    
@@ -12,23 +12,26 @@ export default {
       password: "",
       name: "",
       lastname:"",
-      confirmRegister: "",
+      rol:"user",
     });
-
+    const confirmRegister= ref("");
 
     function registrar(){
       registerService(form).then((result)=>{
-        console.log(result);
         if (result.status == 200) {
-          form.confirmRegister = result.data
+          confirmRegister.value = result.data
+           
         }else{
-          form.confirmRegister = result.data
+          confirmRegister.value = result.data
         }
       })
     }
+
+
     return {
       ...toRefs(form),
-      registrar
+      registrar,
+      confirmRegister,
     };
   },
 };

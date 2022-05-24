@@ -5,16 +5,16 @@
             </div>
 
             <ul class="nav col-md-8 justify-content-end  text-small justify-sm-content-center">
-            <li>
-                <a href="#" class="nav-link text-white">
-                    <i class="bi bi-house d-block"></i>
-                Home
-                </a>
-            </li>
+                <li>
+                    <router-link to="/admin/users" class="nav-link text-white">
+                        <i class="bi bi-person-workspace d-block"></i>
+                    Admins
+                    </router-link>
+                </li>
             <li >
                 <router-link to="/admin/dashboard" class="nav-link text-white">
                     <i class="bi bi-speedometer2 text-white d-block"></i>
-                    Dashboard</router-link>
+                    Panel Administracion</router-link>
             </li>
             <li>
                 <router-link to="/admin/tables" class="nav-link text-white">
@@ -22,14 +22,17 @@
                     Tablas</router-link>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <button class="btn text-white" @click="clickLongOut"> 
                     <i class="bi bi-person-circle d-block"></i>
-                Usuarios
-                </a>
+                {{nameUser.name}}
+                </button>
             </li>
-            </ul>
+        </ul>
     </div>
-  </div>
-  <div class="container">
+</div>
+<div class="container">
+    <ModalLongOutComponent  @close="clickLongOut" :modalActive="modalActive">
+        <ModalLong/>
+    </ModalLongOutComponent>
     <router-view></router-view>
   </div>

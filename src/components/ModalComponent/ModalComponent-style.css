@@ -54,20 +54,4 @@
 .modal .modal-inner i:hover {
   color: crimson;
 }
-.modal .modal-inner .close {
-  padding: 20px 30px;
-  border: none;
-  font-size: 16px;
-  background-color: crimson;
-  color: #fff;
-  cursor: pointer;
-}
-.modal .modal-inner .add {
-  padding: 20px 30px;
-  border: none;
-  font-size: 16px;
-  background-color: green;
-  color: #fff;
-  cursor: pointer;
-}
 /*# sourceMappingURL=ModalComponent-style.css.map */

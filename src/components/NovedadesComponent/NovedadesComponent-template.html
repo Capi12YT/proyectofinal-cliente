@@ -1,16 +1,17 @@
 
 <div id="novedades" class="container-fluid ">
     <div class="mb-5">
-        <h3 class="text-center tossing mt-3" v-animate-onscroll="''">NOVEDADES</h3>
+        <h3 class="text-center tossing mt-3" >NOVEDADES</h3>
     </div>
-    <div id="cards" class="container m-auto  pb-4 rounded-2  invisible estatico" v-animate-onscroll="'slideExpandUp'">
+    <div id="cards" class="container m-auto  pb-4 rounded-2  invisible" v-animate-onscroll="'slideExpandUp'">
         <div id="contenedor-de-cards" class="h-100 w-75 m-auto ">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
                 <div class="col floating" v-for="item in lastViajes" :key="item.id">
                   <div class="card h-100">
                     <img :src="item.img" class="card-img-top" alt="">
                     <div class="card-body">
                       <h5 class="card-title">{{item.name}}</h5>
+                      <p><small class="fw-bold">Localizacion: </small>{{capitalize(item.location)}}</p>
                       <p class="card-text">{{item.description}}</p>
                       <ReservaComponent :idViaje="item.id"></ReservaComponent>
                     </div>
@@ -24,12 +25,12 @@
         </div>
     </div>
 </div>
-<div id="eslogan" class="container mt-5 py-2 ">
-    <div class="row align-items-center">
-        <div class="col-md-6 " v-animate-onscroll="'slideLeft'">
+<div id="eslogan" class="container mt-5 py-2 " >
+    <div class="row align-items-center " >
+        <div class="col-md-6  invisible" v-animate-onscroll="'slideLeft'">
             <h1 class="text-center " >TE OFRECEMOS VIAJES PERFECTOS PARA TU BOLSILLO</h1>
         </div>
-        <div class="col-md-6" v-animate-onscroll="'slideRight'">
+        <div class="col-md-6 invisible" v-animate-onscroll="'slideRight'">
             <img src="../../assets/images/anuncio/anuncio.webp" class="img-fluid rounded-2" alt="" >
         </div>
     </div>

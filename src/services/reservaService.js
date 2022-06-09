@@ -18,3 +18,6 @@ export function reservaDeleteServicio(id) {
 export function reservaAllDeleteByUsersServicio(idUser) {
       return axios.delete(url+"All/Delete/"+idUser)
   }
+export function paginationServiceReserva(page) {
+    return axios.get(url+"Pagination?page="+page);
+}

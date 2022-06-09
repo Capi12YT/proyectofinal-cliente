@@ -5,8 +5,10 @@
             <div v-if="modalActive" class="modal-inner">
               <!-- Modal Content -->
               <slot></slot>
-              <button class="btn btn-default" @click="Delete" type="button">Borrar</button>
-              <button class="close" @click="close" type="button">Close</button>
+              <div class="d-flex justify-content-between w-75 m-auto">
+                <button class="btn btn-default p-2" @click="Delete" type="button">Borrar</button>
+                <button class="btn btn-danger p-2" @click="close" type="button">Close</button>
+              </div>
             </div>
           </transition>
         </div>

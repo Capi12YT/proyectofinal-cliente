@@ -18,15 +18,12 @@ export default {
   setup() {
     const storeViaje = viajesStore();
     const store = userTokenStore();
+
     const nameUser = ref(store.getTokenData)
     const numViajesUser = ref(0);
     const modalActive = ref(false);
     const modalActiveCart = ref(false);
-
-    // if (storeViaje.getNumViaje > 0) {
-      
-    // }
-
+    
     const clickLongOut = () => {
       modalActive.value = !modalActive.value;
     };
@@ -42,6 +39,9 @@ export default {
     const disabled = computed(() => storeViaje.getNumViaje > 0)
     const numViajes = computed(() => numViajesUser.value = storeViaje.getNumViaje)
 
+
+
+
     return {
       nameUser,
       modalActive,
@@ -52,7 +52,8 @@ export default {
       fecha,
       storeViaje,
       numViajes,
-      disabled
+      disabled,
+      // prueba
     };
   },
 };

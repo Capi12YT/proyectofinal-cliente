@@ -1,5 +1,5 @@
-import {createService,updateService,deleteService,allService} from "@/services/adminService"
-import { ref } from "vue";
+import {createService,updateService,deleteService,paginationService} from "@/services/adminService"
+import { ref,watch } from "vue";
 import ModalComponent from "../ModalComponent/ModalComponet.vue";
 import ModalNewAdmin from "../../view/ModalNewAdmin.vue"
 import ModalEditAdmin from "../../view/ModalEditAdmin.vue"
@@ -22,7 +22,9 @@ export default {
     const modalActiveDelete = ref(false);
     const id_item_selected = ref("");
     const id_item_delete = ref("");
-
+    const page = ref(1);
+    const numeroTotalAdmin = ref(0);
+    const numeroItemsAdmin = ref(0);
     const clickAdd = () => {
       modalActive.value = !modalActive.value;
     };
@@ -39,12 +41,15 @@ export default {
     }
     let adminData = {};
     const addAdmin = () =>{
+      page.value = 1;
       modalActive.value = false;
       createService(adminData).then(result =>{
         if (result.status==201) { 
-            allService().then((result) => {
-              adminAll.value=result.data;
-            })
+          paginationService(page.value).then((result)=>{
+            numeroTotalAdmin.value=result.data.numeroUsuarios
+            numeroItemsAdmin.value=result.data.usuariosPaginados.length;
+            adminAll.value = result.data.usuariosPaginados;
+          })
         }
       });
     }
@@ -52,20 +57,23 @@ export default {
       modalActiveEdit.value = false;
       updateService(adminData).then(result =>{
         if (result.status==200) { 
-            allService().then((result) => {
-              adminAll.value=result.data;
-            })
+          paginationService(page.value).then((result)=>{
+            adminAll.value = result.data.usuariosPaginados;
+          })
         }
       });
     }
 
     const deleteAdmin = () =>{
+      page.value = 1;
       modalActiveDelete.value = !modalActiveDelete.value;
       deleteService(id_item_delete.value).then(result =>{
         if (result.status==200) { 
-            allService().then((result) => {
-              adminAll.value=result.data;
-            })
+          paginationService(page.value).then((result)=>{
+            numeroTotalAdmin.value=result.data.numeroUsuarios
+            numeroItemsAdmin.value=result.data.usuariosPaginados.length;
+            adminAll.value = result.data.usuariosPaginados;
+          })
         }
       });
     }
@@ -73,8 +81,31 @@ export default {
       adminData = adminDataTEMP;
     }
 
-    allService().then((result)=>{
-      adminAll.value = result.data;
+
+
+    const numeroPaginas = () => {
+      if (numeroItemsAdmin.value == 0) {
+        return 0;
+      }
+      return Math.ceil(numeroTotalAdmin.value / numeroItemsAdmin.value);
+    };    
+    
+    watch(adminAll, () => {
+      numeroPaginas()
+    })
+
+    function newPage(newPage) {
+      paginationService(newPage).then((result) => {
+        page.value = newPage;
+        adminAll.value = result.data.usuariosPaginados;
+
+      });
+    }
+
+    paginationService(page.value).then((result)=>{
+      numeroTotalAdmin.value=result.data.numeroUsuarios
+      numeroItemsAdmin.value=result.data.usuariosPaginados.length;
+      adminAll.value = result.data.usuariosPaginados;
     })
     return {
      adminAll,
@@ -90,6 +121,9 @@ export default {
      setAdmin,
      editAdmin,
      deleteAdmin,
+     page,
+     newPage,
+     numeroPaginas
     };
   },
 };

@@ -1,14 +1,18 @@
 <template>
   <div class="modal-dialog">
     <div class="modal-content">
-      <form>
+      <form class="needs-validation" id="needs-validation" novalidate>
         <div class="modal-header">
           <h4 class="modal-title text-black">Añadir Viaje</h4>
         </div>
         <div class="modal-body">
+
           <div class="form-group text-black">
             <label>Nombre</label>
             <input type="text" class="form-control" v-model="name" required />
+               <div class="invalid-feedback">
+                 Campo requerido
+               </div>
           </div>
           <div class="form-group text-black">
             <label>Acontecimiento</label>
@@ -26,6 +30,9 @@
                 {{ item.name }}
               </option>
             </select>
+              <div class="invalid-feedback">
+                 Campo requerido
+               </div>
           </div>
           <div class="form-group text-black">
             <label>Localizacion</label>
@@ -43,6 +50,9 @@
                 {{item.PRO}}
               </option>
             </select>
+              <div class="invalid-feedback">
+                 Campo requerido
+               </div>
           </div>
           <div class="form-group text-black">
             <label>Descripción</label>
@@ -51,6 +61,9 @@
               v-model="description"
               required
             ></textarea>
+              <div class="invalid-feedback">
+                 Campo requerido
+               </div>
           </div>
           <div class="form-group text-black">
             <label>Precio</label>
@@ -58,8 +71,12 @@
               type="number"
               class="form-control"
               v-model="price"
+              min="1"
               required
             />
+            <div class="invalid-feedback">
+                 Campo requerido y minimo debe ser 1
+            </div>
           </div>
           <div class="form-group text-black row justify-content-end py-1">
             <label>Oferta</label>
@@ -68,13 +85,16 @@
                 class="form-check-input"
                 type="checkbox"
                 v-model="estado"
-                required
+
               />
             </div>
           </div>
           <div class="form-group text-black">
             <label>Imagen del Viaje</label>
-            <input class="form-control mt-2" type="file" id="formFile" @change="getUrl" />
+            <input class="form-control mt-2" type="file" accept="image/webp" id="formFile" @change="getUrl" required/>
+            <div class="invalid-feedback">
+                 Campo requerido
+            </div>
           </div>
         </div>
       </form>

@@ -15,3 +15,6 @@ export function updateService(body) {
 export function deleteService(id) {
   return axios.delete(url+"Delete/"+id);
 }
+export function paginationService(page) {
+  return axios.get(url+"Admin/Pagination?page="+page);
+}

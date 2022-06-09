@@ -1,7 +1,7 @@
 <template>
   <div class="modal-dialog">
     <div class="modal-content">
-      <form>
+      <form class="needs-validation" id="needs-validation" novalidate>
         <div class="modal-header">
           <h4 class="modal-title text-black">Editar Viaje</h4>
         </div>
@@ -69,7 +69,7 @@
                 type="checkbox"
                 v-model="estado"
                 id="checkbox"
-                required
+                
               />
             </div>
           </div>
@@ -81,7 +81,7 @@
           </div>
           <div class="form-group text-black mt-1">
             <h4>Nueva Imagen del Viaje</h4>
-            <input class="form-control mt-2" type="file" id="formFile" @change="getUrl" />
+            <input class="form-control mt-2" type="file" accept="image/webp" id="formFile" @change="getUrl" />
           </div>
         </div>
       </form>

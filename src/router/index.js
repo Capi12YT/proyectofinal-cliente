@@ -8,12 +8,11 @@ import UserComponent from "../components/UserComponent/UserComponent.vue"
 import ClientComponent from "../components/ClientComponent/ClientComponent.vue"
 import SemanaSantaComponent from "../components/SemanaSantaComponent/SemanaSantaComponent.vue"
 import NovedadesComponent from '../components/NovedadesComponent/NovedadesComponent.vue'
+
 const routes = [
   {
     path: '/:catchAll(.*)',
-      redirect: () => {
-        return { path: '/login'}
-      },
+    name: 'index',
   },
   {
     path: '/login',
@@ -80,12 +79,25 @@ import { userTokenStore } from '@/store/tokenStore'
 
 router.beforeEach((to) => {
   const store = userTokenStore()
-  // console.log(store.getTokenData.rol,"rol");
+
+  if (to.name == 'index' && !store.getToken) {
+   return {name : 'login'}
+  }
+
+  if (to.name == 'index' && store.getToken) {
+    if (store.getTokenData.rol == 'user') {
+      return {name: 'client'}
+    }else{
+      return {name: 'admin'}
+    }
+  }
+
   if (to.name != 'register') {
     if ( to.name != 'login' && !store.getToken) {
       return {name: 'login'}
     }
   }
+
   if (to.name == 'admin' || to.name == 'admin-dashboard' || to.name == 'admin-tables' || to.name == 'admin-users') {
     if (store.getTokenData.rol != 'admin') {
       return { name: 'client' }

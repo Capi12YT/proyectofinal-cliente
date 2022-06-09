@@ -10,7 +10,7 @@ export default {
   components: {
   },
   setup() {
-    const form = reactive({
+    const data = reactive({
       email:"",
       password:"",
       confirmPassword: "",
@@ -21,27 +21,37 @@ export default {
 
     // login
     function login(){
-      loginServicio(form).then((result) => {
-        if (result.status == 200) {
-          store.setToken(result.data)
-          localStorage.token=result.data;
-          if (store.getTokenData.rol!= 'admin') {
-            router.push({name: 'client'});
-          }else{
-            router.push({name: 'admin'});
-          }
-        }else{
-          form.confirmPassword = true
-          setTimeout(function(){ 
-            form.confirmPassword =false;
-           },2500);
-        }
-      });
+
+        let form = document.getElementById('needs-validation')
+              if (!form.checkValidity()) {
+                form.classList.add('was-validated')
+              }else{
+                form.classList.add('was-validated')
+
+                loginServicio(data).then((result) => {
+                  if (result.status == 200) {
+                    store.setToken(result.data)
+                    localStorage.token=result.data;
+                    if (store.getTokenData.rol!= 'admin') {
+                      router.push({name: 'client'});
+                    }else{
+                      router.push({name: 'admin'});
+                    }
+                  }else{
+                    data.confirmPassword = true
+                    setTimeout(function(){ 
+                      data.confirmPassword =false;
+                     },2500);
+                  }
+                });
+
+              }
     }
 
-    
+
+          
     return {
-      ...toRefs(form),
+      ...toRefs(data),
       login,
       store,
 

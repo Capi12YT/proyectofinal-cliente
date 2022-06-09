@@ -12,7 +12,7 @@ import axios from "axios";
 
 //axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 axios.defaults.baseURL = 'http://localhost:8080/api/';
-//axios.defaults.baseURL = '/api/';
+// axios.defaults.baseURL = '/api/';
 
 createApp(App).use(createPinia()).use(router).use(VueAnimateOnScroll).use(plugin,defaultConfig).mount('#app')
 import "bootstrap/dist/js/bootstrap.js"

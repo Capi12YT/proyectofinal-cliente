@@ -1,21 +1,21 @@
 <div class="container-fluid overflow-hidden">
+
 	<div class="table-title mt-4 p-2">
 		<div class="row mx-1">
-			<div class="col-sm-6">
-				<h2>Administracion de <b>Viajes</b></h2>
+			<div class="col-sm-8 ">
+				<h3>Administracion de <b>Viajes</b>  <a href="/static/Manualusuarioadministraciondeviajes.pdf"><i class="bi bi-info-circle text-white"></i></a></h3>
 			</div>
-			<div class="col-sm-6 text-end ">
+			<div class="col-sm-4 text-end ">
 				<button class="btn btn-success" @click="clickAdd" type="button"><i class="bi bi-plus-circle"></i> Añadir Viaje</button>
 			</div>
 		</div>
 	</div>
-	<div class="w-100">
-			<table class="table table-striped table-hover">
+	<div class="w-100 table-mobile">
+			<table class="table table-striped table-hover text-center">
 				<thead>
 					<tr>
 						<th scope="col">Name</th>
 						<th scope="col">Localizacion</th>
-						<th scope="col">Descripcion</th>
 						<th scope="col">Acontecimiento</th>
 						<th scope="col">Oferta</th>
 						<th scope="col">Precio</th>
@@ -27,11 +27,10 @@
 					:value="item.id">
 						<td scope="row">{{item.name}}</td>
 						<td>{{item.location}}</td>
-						<td>{{item.description}}</td>
 						<td>{{item.name_acontecimiento}}</td>
 						<td>{{estado(item.estado)}}</td>
 						<td>{{item.price }}</td>
-						<td>
+						<td class="d-flex gap-3">
 							<a @click="clickEdit(item)" class="edit"  data-toggle="modal"><i class="bi bi-pen" data-toggle="tooltip" title="Edit"></i></a>
 							<a @click="clickDelete(item.id)" class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Delete"></i>
 							</a>
@@ -39,32 +38,23 @@
 					</tr>
 				</tbody>
 			</table>
-			<nav aria-label="Page navigation example">
+			<nav aria-label="Page navigation example" >
 				<ul class="pagination justify-content-end">
-				  <li class="page-item ">
-					<a class="page-link" href="#" tabindex="-1">Previous</a>
-				  </li>
-				  <li class="page-item"><a class="page-link" href="#">1</a></li>
-				  <li class="page-item"><a class="page-link" href="#">2</a></li>
-				  <li class="page-item"><a class="page-link" href="#">3</a></li>
-				  <li class="page-item">
-					  <a class="page-link" href="#">Next</a>
-					</li>
+				  <li class="page-item " :class="{'disabled': page == 1 }"><a class="page-link"  @click="newPage(page-1)" >Previous</a></li>
+				  <li  class="page-item"  v-for="i in numeroPaginas()" :class="{'disabled': i == page }"><a class="page-link" @click="newPage(i)">{{i}}</a></li>
+				  <li class="page-item" :class="{'disabled': page == numeroPaginas }"><a class="page-link" @click="newPage(page + 1)" >Next</a></li>
 				</ul>
 			</nav>
 	</div>
 	<div class="table-title mt-4 p-2">
 		<div class="row mx-1">
 			<div class="col-sm-6">
-				<h2>Tabla <b>Acontecimientos</b></h2>
+				<h3>Tabla <b>Acontecimientos</b></h3>
 			</div>
-			<!-- <div class="col-sm-6 text-end ">
-				<button class="btn btn-success" @click="clickAdd" type="button"><i class="bi bi-plus-circle"></i> Añadir Viaje</button>
-			</div> -->
 		</div>
 	</div>
 	<div class="w-100">
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-hover text-center">
 				<thead>
 					<tr>
 						<th scope="col">Nombre</th>
@@ -79,40 +69,30 @@
 						<td scope="row">{{item.name}}</td>
 						<td>{{fecha(item.fechaInicio)}}</td>
 						<td>{{fecha(item.fechaFin)}}</td>
-						<!-- <td>
-							<a @click="clickEdit(item)" class="edit"  data-toggle="modal"><i class="bi bi-pen" data-toggle="tooltip" title="Edit"></i></a>
-							<a @click="clickDelete(item.id)" class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Delete"></i>
-							</a>
-						</td> -->
+
 					</tr>
 				</tbody>
 			</table>
 			<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-end">
-				  <li class="page-item ">
-					<a class="page-link" href="#" tabindex="-1">Previous</a>
-				  </li>
-				  <li class="page-item"><a class="page-link" href="#">1</a></li>
-				  <li class="page-item"><a class="page-link" href="#">2</a></li>
-				  <li class="page-item"><a class="page-link" href="#">3</a></li>
-				  <li class="page-item">
-					  <a class="page-link" href="#">Next</a>
-					</li>
-				</ul>
+				<nav aria-label="Page navigation example" >
+					<ul class="pagination justify-content-end">
+					  <li class="page-item " id="previusAco"  :class="{'disabled': pageAco == 1 }"><a class="page-link"  @click="newPageAco(pageAco - 1)" >Previous</a></li>
+					  <li  class="page-item"  v-for="i in numeroPaginasAco()" :class="{'disabled': i == pageAco }"><a class="page-link" @click="newPageAco(i)">{{i}}</a></li>
+					  <li class="page-item" :class="{'disabled': pageAco == numeroPaginasAco }"><a class="page-link" @click="newPageAco(pageAco + 1)" >Next</a></li>
+					</ul>
+				</nav>
 			</nav>
 	</div>
 	<div class="table-title mt-4 p-2">
 		<div class="row mx-1">
 			<div class="col-sm-6">
-				<h2>Tabla <b>Reservas</b></h2>
+				<h3>Tabla <b>Reservas</b></h3>
 			</div>
-			<!-- <div class="col-sm-6 text-end ">
-				<button class="btn btn-success" @click="clickAdd" type="button"><i class="bi bi-plus-circle"></i> Añadir Viaje</button>
-			</div> -->
+
 		</div>
 	</div>
 	<div class="w-100">
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-hover text-center">
 				<thead>
 					<tr>
 						<th scope="col">Viaje</th>
@@ -127,25 +107,15 @@
 						<td scope="row">{{item.nombreViaje}}</td>
 						<td>{{item.nombreUsuario}}</td>
 						<td>{{item.cantidad}}</td> 
-						<!-- <td>
-							<a @click="clickEdit(item)" class="edit"  data-toggle="modal"><i class="bi bi-pen" data-toggle="tooltip" title="Edit"></i></a>
-							<a @click="clickDelete(item.id)" class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Delete"></i>
-							</a>
-						</td> -->
+
 					</tr>
 				</tbody>
 			</table>
-			<nav aria-label="Page navigation example">
+			<nav aria-label="Page navigation example" >
 				<ul class="pagination justify-content-end">
-				  <li class="page-item ">
-					<a class="page-link" href="#" tabindex="-1">Previous</a>
-				  </li>
-				  <li class="page-item"><a class="page-link" href="#">1</a></li>
-				  <li class="page-item"><a class="page-link" href="#">2</a></li>
-				  <li class="page-item"><a class="page-link" href="#">3</a></li>
-				  <li class="page-item">
-					  <a class="page-link" href="#">Next</a>
-					</li>
+				  <li class="page-item " :class="{'disabled': pageRes == 1 }"><a class="page-link"  @click="newPageRes(pageRes - 1)" >Previous</a></li>
+				  <li  class="page-item"  v-for="i in numeroPaginasRes()" :class="{'disabled': i == pageRes }"><a class="page-link" @click="newPageRes(i)">{{i}}</a></li>
+				  <li class="page-item" :class="{'disabled': pageRes == numeroPaginasRes() }"><a class="page-link" @click="newPageRes(pageRes + 1)" >Next</a></li>
 				</ul>
 			</nav>
 	</div>
@@ -169,3 +139,5 @@
 		<ModalDeleteComponent @Delete="deleteViaje" @close="clickDelete" :modalActive="modalActiveDelete">
 			<ModalDeleteViaje></ModalDeleteViaje>
 		</ModalDeleteComponent>
+
+		<!-- help modal-->

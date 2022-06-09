@@ -28,3 +28,7 @@ export function lastService() {
 export function filterAcontecimientoService(nombreAcontecimiento) {
   return axios.post(url+"Filter/Acontecimiento",nombreAcontecimiento);
 }
+
+export function paginationService(page) {
+  return axios.get(url+"Pagination?page="+page);
+}

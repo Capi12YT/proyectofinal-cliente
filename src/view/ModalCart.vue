@@ -1,4 +1,5 @@
 <template>
+<div>
     <div class="w-75 m-auto py-3" v-if="activeAlert">
         <div class="alert alert-success d-flex align-items-center" role="alert">
             <i class="bi bi-patch-check"></i>
@@ -15,29 +16,30 @@
             </div>
         </div>
     </div>
-<div class="w-75 m-auto py-3">
-    <h1 class="text-center">Tus Reservas</h1>
-    <ul class="list-group list-group-horizontal justify-content-center mt-4 w-100 text-center   " v-for="item in reservaAll" :key="item.id">
-      <li class="list-group-item w-100"><img :src="item.img" alt=""></li>
-      <li class="list-group-item w-100">
-          <small class="d-block fw-bold mb-2">Viaje:</small>
-          <small class="d-block">{{item.nombreViaje}}</small></li>
-      <li class="list-group-item w-100">
-          <small class="d-block fw-bold mb-2">Cantidad:</small>
-          <small class="d-block">{{item.cantidad}}</small></li>
-          <li class="list-group-item w-100 d-flex justify-content-center align-items-center"><i class="bi bi-x-circle red" @click="clickDelete(item.id)"></i></li>
-    </ul>
-    
-    <div class="m-auto text-center mt-4" v-if="loading == true">
-        <div class="spinner-grow " role="status" >
+    <div class="w-75 m-auto py-3">
+        <h1 class="text-center">Tus Reservas</h1>
+        <ul class="list-group list-group-horizontal justify-content-center mt-4 w-100 text-center   " v-for="item in reservaAll" :key="item.id">
+        <li class="list-group-item w-100"><img :src="item.img" alt=""></li>
+        <li class="list-group-item w-100">
+            <small class="d-block fw-bold mb-2">Viaje:</small>
+            <small class="d-block">{{item.nombreViaje}}</small></li>
+        <li class="list-group-item w-100">
+            <small class="d-block fw-bold mb-2">Cantidad:</small>
+            <small class="d-block">{{item.cantidad}}</small></li>
+            <li class="list-group-item w-100 d-flex justify-content-center align-items-center"><i class="bi bi-x-circle red" @click="clickDelete(item.id)"></i></li>
+        </ul>
+        
+        <div class="m-auto text-center mt-4" v-if="loading == true">
+            <div class="spinner-grow " role="status" >
+            </div>
+            <div>
+                <span class="sr-only">Loading...</span>
+            </div>
         </div>
-        <div>
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
 
-    <div class="w-75 m-auto mt-5 ">
-        <button class="btn btn-dark d-block m-auto w-50" @click="clickCompra()">Finalizar Compra</button>
+        <div class="w-75 m-auto mt-5 ">
+            <button class="btn btn-dark d-block m-auto w-50" @click="clickCompra()">Finalizar Compra</button>
+        </div>
     </div>
 </div>
 </template>
@@ -115,6 +117,9 @@ export default {
     }
     .red{
         color: red;
+    }
+    i{
+        cursor: pointer ;
     }
 @media screen and (max-width: 460px){
     

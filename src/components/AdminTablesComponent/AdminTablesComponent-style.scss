@@ -12,14 +12,21 @@ table.table td a:hover {
 }
 table.table td a.edit {
 	color: #FFC107;
+	cursor: pointer;
 }
 table.table td a.delete {
 	color: #F44336;
+	cursor: pointer;
 }
 table.table td i {
 	font-size: 15px;
 }
- 
+
+@media screen and (max-width: 540px){
+.table-mobile{
+		overflow-x: scroll;
+	}
+}
 
 /* Modal styles */
 .modal .modal-dialog {
@@ -54,9 +61,8 @@ table.table td i {
 .modal form label {
 	font-weight: normal;
 }	
-@media screen and (max-width: 540px){
-	.table-mobile{
-			overflow-x: scroll;
-		}
-	}
-	
+
+.page-item {
+	cursor: pointer !important;
+
+}

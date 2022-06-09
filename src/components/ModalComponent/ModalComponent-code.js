@@ -7,7 +7,13 @@ export default {
     };
 
     const add = () => {
-      emit("add");
+      let form = document.getElementById('needs-validation')
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated')
+      }else{
+        form.classList.add('was-validated')
+        emit("add");
+      }
     }
     return { close,add };
   },

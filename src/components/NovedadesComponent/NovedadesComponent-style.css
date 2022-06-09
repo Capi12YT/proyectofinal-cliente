@@ -12,8 +12,17 @@ h1, h2, h3 {
 }
 
 @media (max-width: 768px) {
+  .invisible {
+    visibility: visible !important;
+  }
+}
+@media (max-width: 768px) {
   #novedades .invisible {
     visibility: visible !important;
+  }
+  #novedades .slideExpandUp {
+    animation-name: none;
+    -webkit-animation-name: none;
   }
 }
 @media (min-width: 768px) {

@@ -73,6 +73,7 @@ export default {
       modalActiveHelpTablaViaje.value = !modalActiveHelpTablaViaje.value;
     };
   
+    //funcion de calculo de paginas de viajes
     const numeroPaginas = () => {
       if (numeroItemsViaje.value == 0) {
         return 0;
@@ -80,11 +81,12 @@ export default {
       return Math.ceil(numeroTotalViajes.value / numeroItemsViaje.value);
     };    
     
+    //watch ejecutador de funcion de numero de paginas de viajes
     watch(viajeAll, () => {
       numeroPaginas()
     })
 
-
+  //funcion de calculo de paginas de acontecimiento
     const numeroPaginasAco = () => {
       if (numeroItemsAcontecimiento.value == 0) {
         return 0;
@@ -92,7 +94,7 @@ export default {
       return Math.ceil(numeroTotalAcontecimientos.value / numeroItemsAcontecimiento.value);
     };
 
-
+    //funcion de calculo de paginas de reservas
     const numeroPaginasRes = () => {
       if (numeroItemsReserva.value == 0) {
         return 0;
@@ -101,18 +103,20 @@ export default {
     };
 
 
-    // servicios que se ejecutar al iniciar el componente
-
+    // servicios que se ejecutan al iniciar el componente
+    //servicio de paginacio de viajes
     paginationService(page.value).then((result) => {
       numeroTotalViajes.value = result.data.numeroTotalViajes;
       numeroItemsViaje.value = result.data.viajesPaginados.length;
       viajeAll.value = result.data.viajesPaginados;
     });
+    //servicio de paginacio de acontecimientos
     paginationServiceAcontecimiento(pageAco.value).then((result) => {
       numeroTotalAcontecimientos.value = result.data.numeroAcontecimientos;
       numeroItemsAcontecimiento.value = result.data.acontecimientosPaginados.length;
       acontecimientoAll.value = result.data.acontecimientosPaginados;
     });
+    //servicio de paginacio de reservas
     paginationServiceReserva(pageRes.value).then((result) => {
       numeroTotalReservas.value = result.data.numeroReserva;
       numeroItemsReserva.value = result.data.reservasPaginados.length;
@@ -120,7 +124,7 @@ export default {
     });
 
 
-
+    //funcion llamada pagina nueva de viajes
     function newPage(newPage) {
       if (newPage == undefined) {
         newPage =  page.value - 1
@@ -130,12 +134,14 @@ export default {
         viajeAll.value = result.data.viajesPaginados;
       });
     }
+    //funcion llamada pagina nueva de acontecimientos
     function newPageAco(newPage) {
       paginationServiceAcontecimiento(newPage).then((result) => {
         pageAco.value = newPage;
         acontecimientoAll.value = result.data.acontecimientosPaginados;
       });
     }
+    //funcion llamada pagina nueva de reservas
     function newPageRes(newPage) {
       paginationServiceReserva(newPage).then((result) => {
         pageRes.value = newPage;
@@ -168,6 +174,7 @@ export default {
     };
     const editViaje = () => {
       modalActiveEdit.value = false;
+      console.log(viajeData);
       updateService(viajeData).then((result) => {
         if (result.status == 200) {
           paginationService(page.value).then((result) => {

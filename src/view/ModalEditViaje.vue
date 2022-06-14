@@ -108,9 +108,13 @@ export default {
       img:"",
     });
     const url_imagen = ref("");
-
+    //corregir perdida de imagen 
     watch(formData, (newValue) => {
+      // if (newValue.img == "") {
+      //   newValue.img == url_imagen.value;
+      // }
       emit("setViaje", newValue);
+        // console.log(newValue);
     });
 
     function getUrl(e) {

@@ -42,7 +42,7 @@
 				<ul class="pagination justify-content-end">
 				  <li class="page-item " :class="{'disabled': page == 1 }"><a class="page-link"  @click="newPage(page-1)" >Previous</a></li>
 				  <li  class="page-item"  v-for="i in numeroPaginas()" :class="{'disabled': i == page }"><a class="page-link" @click="newPage(i)">{{i}}</a></li>
-				  <li class="page-item" :class="{'disabled': page == numeroPaginas }"><a class="page-link" @click="newPage(page + 1)" >Next</a></li>
+				  <li class="page-item" :class="{'disabled': page == numeroPaginas() }"><a class="page-link" @click="newPage(page + 1)" >Next</a></li>
 				</ul>
 			</nav>
 	</div>
@@ -78,7 +78,7 @@
 					<ul class="pagination justify-content-end">
 					  <li class="page-item " id="previusAco"  :class="{'disabled': pageAco == 1 }"><a class="page-link"  @click="newPageAco(pageAco - 1)" >Previous</a></li>
 					  <li  class="page-item"  v-for="i in numeroPaginasAco()" :class="{'disabled': i == pageAco }"><a class="page-link" @click="newPageAco(i)">{{i}}</a></li>
-					  <li class="page-item" :class="{'disabled': pageAco == numeroPaginasAco }"><a class="page-link" @click="newPageAco(pageAco + 1)" >Next</a></li>
+					  <li class="page-item" :class="{'disabled': pageAco == numeroPaginasAco() }"><a class="page-link" @click="newPageAco(pageAco + 1)" >Next</a></li>
 					</ul>
 				</nav>
 			</nav>
